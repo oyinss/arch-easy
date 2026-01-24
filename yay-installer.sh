@@ -2,7 +2,7 @@
 set -e
 
 # Set AUR directory
-AUR_DIR="$HOME/aur"
+AUR_DIR="$HOME/AUR"
 YAY_DIR="$AUR_DIR/yay"
 
 # Prepare directory
