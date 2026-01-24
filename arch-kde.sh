@@ -188,6 +188,11 @@ systemctl enable avahi-daemon
 systemctl enable fstrim.timer
 systemctl enable systemd-hibernate.service
 
+# Set time
+sudo timedatectl set-timezone Africa/Lagos
+
+# Turn off WatchDog at reboot
+echo "RebootWatchdogSec=0" | sudo tee --append /etc/systemd/system.conf
 EOF
 
 # -------------------------------------
