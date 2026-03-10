@@ -165,6 +165,14 @@ echo "$username:$userpass" | chpasswd
 echo "root:$rootpass" | chpasswd
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
+# KDE keyboard config for the new user (write Plasma per-user settings)
+# Run as the created user so the config lands in their home directory
+su - "$username" -s /bin/bash -c 'mkdir -p ~/.config && \
+kwriteconfig5 --file ~/.config/kxkbrc --group Layout --key Enabled true && \
+kwriteconfig5 --file ~/.config/kxkbrc --group Layout --key LayoutList "us" && \
+kwriteconfig5 --file ~/.config/kxkbrc --group Layout --key Model "pc105" && \
+kwriteconfig5 --file ~/.config/kxkbrc --group Layout --key Options ""'
+
 # NetworkManager config
 cat > /etc/NetworkManager/NetworkManager.conf <<NMCONFIG
 [main]
